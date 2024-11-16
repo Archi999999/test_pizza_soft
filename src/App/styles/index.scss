@@ -1,0 +1,9 @@
+@forward 'boilerplate';
+@forward 'colors';
+@forward 'typography';
+
+.main_container {
+  width: 100%;
+  max-width: 923px;
+  margin: 0 auto;
+}

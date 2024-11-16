@@ -1,7 +1,7 @@
-import style from './Table.module.scss'
 import {TableHeaderCell} from "./TableHeaderCell/TableHeaderCell";
 import {IColumn} from "../../common/types/table";
 import {ReactNode} from "react";
+import style from "./Table.module.scss"
 
 interface ITable {
     className?: string

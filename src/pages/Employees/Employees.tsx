@@ -1,7 +1,9 @@
-const Employees = () => {
+import {TableEmployees} from "./TableEmployees/TableEmployees";
+
+export const Employees = () => {
     return (
-        <h1>Hello pizza</h1>
+        <section>
+            <TableEmployees/>
+        </section>
     )
 }
-
-export default Employees;

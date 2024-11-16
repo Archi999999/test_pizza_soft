@@ -1,9 +1,17 @@
 @forward 'boilerplate';
 @forward 'colors';
 @forward 'typography';
+@forward "variables";
+
+.app_width {
+  width: 100%;
+  max-width: 923px;
+  margin: 0 auto;
+}
 
 .main_container {
   width: 100%;
   max-width: 923px;
   margin: 0 auto;
+  min-height: var(--page-height);
 }

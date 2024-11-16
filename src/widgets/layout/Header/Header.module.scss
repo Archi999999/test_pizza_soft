@@ -1,0 +1,31 @@
+.header {
+  height: var(--header-height);
+  display: flex;
+}
+
+.logo {
+  width: 180px;
+}
+
+.nav_container {
+  display: flex;
+  align-items: center;
+}
+
+.nav {
+  display: flex;
+  gap: 16px;
+  font-size: var(--font-size-xl);
+}
+
+.active_link {
+  text-decoration: underline;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  border: none;
+  background-color: var(--gray);
+  margin: 0;
+}

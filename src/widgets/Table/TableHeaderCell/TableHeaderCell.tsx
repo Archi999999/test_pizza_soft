@@ -10,15 +10,15 @@ export interface ITableHeaderCell {
 export const TableHeaderCell = ({column}: ITableHeaderCell) => {
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const ascending = searchParams.get('sortBy');
+    const sortType = searchParams.get('sortType');
     const sort = searchParams.get('sortField') ;
 
     const onChangeSortData = (sortValue?: string) => {
         if (sortValue === sort) {
-            const sortBy = ascending === 'asc' ? 'desc' : 'asc';
-            setSearchParams(`sortField=${sortValue}&sortBy=${sortBy}`)
+            const ascending = sortType === 'asc' ? 'desc' : 'asc';
+            setSearchParams(`sortField=${sortValue}&sortType=${ascending}`)
         } else {
-            setSearchParams(`sortField=${sortValue}&sortBy=asc`)
+            setSearchParams(`sortField=${sortValue}&sortType=asc`)
         }
     }
 

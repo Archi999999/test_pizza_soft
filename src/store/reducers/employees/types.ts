@@ -1,4 +1,4 @@
-export type IRole = 'cook' | 'waiter' | 'driver'
+export type IRole = 'cook' | 'waiter' | 'driver' | 'none'
 
 export interface IEmployee {
     id: number;

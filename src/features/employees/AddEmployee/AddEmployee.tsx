@@ -1,22 +1,23 @@
 import iconAddEmployee from '../../../assets/icons/add_employee.svg'
-
-import style from './AddEmployee.module.scss'
 import {useState} from "react";
 import {FormEmployee} from "../../../pages/Employees/FormEmployee/FormEmployee";
+import {IEmployee} from "../../../store/reducers/employees/types";
 
-interface IAddEmployee {
-    className?: string
-}
+import style from './AddEmployee.module.scss'
+import {useAppDispatch} from "../../../store/store";
+import {addEmployee} from "../../../store/reducers/employees/employeesReducer";
 
-export const AddEmployee = ({className}: IAddEmployee) => {
+export const AddEmployee = () => {
+    const dispatch = useAppDispatch();
     const [showForm, setShowForm] = useState(false)
 
     const handleClick = () => {
         setShowForm(prev => !prev)
     }
 
-    const handleSubmit = () => {
-
+    const handleSubmit = (newEmployee: IEmployee) => {
+        dispatch(addEmployee(newEmployee))
+        setShowForm(false)
     }
 
     return (

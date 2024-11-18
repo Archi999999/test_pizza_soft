@@ -12,7 +12,7 @@ export interface IEmployeesState {
     selectEmployeeId: number | null;
 }
 
-const initialState: IEmployeesState = {
+export const initialState: IEmployeesState = {
     employees: employees,
     filterValues: {},
     selectEmployeeId: null,
@@ -37,10 +37,8 @@ export const employeesReducer = (state: IEmployeesState = initialState, action: 
         }
         case "FILTER_EMPLOYEES": {
             if (action.payload.role) {
-                console.log('if')
                 return {...state, filterValues: {...state.filterValues, role: action.payload.role}}
             } else {
-                console.log('isArchive', action.payload.isArchive)
                 return {...state, filterValues: {...state.filterValues, isArchive: action.payload.isArchive}}
             }
         }
@@ -50,14 +48,32 @@ export const employeesReducer = (state: IEmployeesState = initialState, action: 
         case 'SELECT_EMPLOYEE_ID': {
             return {...state, selectEmployeeId: action.employeeId}
         }
+        case "EDIT_EMPLOYEE": {
+            const { employee } = action;
+            return {
+                ...state,
+                employees: state.employees.map(emp =>
+                    emp.id === employee.id ? { ...emp, ...employee } : emp
+                ),
+            }
+        }
         default:
             return state;
     }
 }
 
+// ACTION CREATORS
+
 export const addEmployee = (employee: IEmployee) => {
     return {
         type: 'ADD_EMPLOYEE',
+        employee,
+    } as const
+}
+
+export const editEmployee = (employee: IEmployee) => {
+    return {
+        type: 'EDIT_EMPLOYEE',
         employee,
     } as const
 }
@@ -83,13 +99,17 @@ export const selectEmployeeId = (employeeId: number | null) => {
     } as const
 }
 
-export type IAddEmployee = ReturnType<typeof addEmployee>
-export type ISortEmployees = ReturnType<typeof sortEmployees>
-export type IFilterEmployees = ReturnType<typeof changeFilterEmployee>
-export type ISelectEmployeeId = ReturnType<typeof selectEmployeeId>
+// TYPES
+
+type IAddEmployee = ReturnType<typeof addEmployee>
+type ISortEmployees = ReturnType<typeof sortEmployees>
+type IFilterEmployees = ReturnType<typeof changeFilterEmployee>
+type ISelectEmployeeId = ReturnType<typeof selectEmployeeId>
+type IEditEmployee = ReturnType<typeof editEmployee>
 
 type ActionsType =
     | IAddEmployee
     | ISortEmployees
     | IFilterEmployees
     | ISelectEmployeeId
+    | IEditEmployee

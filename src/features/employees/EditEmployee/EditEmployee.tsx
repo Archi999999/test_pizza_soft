@@ -1,5 +1,5 @@
 import {FormEmployee} from "../../../pages/Employees/FormEmployee/FormEmployee";
-import {selectEmployeeId} from "../../../store/reducers/employees/employeesReducer";
+import {editEmployee, selectEmployeeId} from "../../../store/reducers/employees/employeesReducer";
 import {useAppDispatch} from "../../../store/store";
 import {IEmployee} from "../../../store/reducers/employees/types";
 
@@ -15,7 +15,8 @@ export const EditEmployee = ({id}: IEditEmployee) => {
     }
 
     const handleSubmit = (employee: IEmployee) => {
-        // console.log(e.currentTarget)
+        dispatch(editEmployee(employee))
+        dispatch(selectEmployeeId(null))
     }
 
     return (

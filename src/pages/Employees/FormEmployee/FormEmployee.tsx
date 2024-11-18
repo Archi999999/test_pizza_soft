@@ -2,40 +2,29 @@ import {Modal} from "../../../shared/Modal/Modal";
 import {useAppSelector} from "../../../store/store";
 import {InputMask} from '@react-input/mask';
 import {getEmployeeByIdSelector} from "../../../store/selectors/employeesSelector";
-import style from './FormEmployee.module.scss'
-import {ChangeEvent, FormEvent, useEffect, useState} from "react";
+import {ChangeEvent, FormEvent, useState} from "react";
 import {IEmployee} from "../../../store/reducers/employees/types";
 import {generateNumberId} from "../common/utils/generateNumberId";
+import style from './FormEmployee.module.scss'
+import {validateFormEmployee} from "../common/utils/validateFormEmployee";
 
 interface IFormEmployee {
-    className?: string
     id?: number
     title: string
     handleCloseModal: () => void
     onSubmit: (employee: IEmployee) => void
 }
 
-export const FormEmployee = ({className, id, title, handleCloseModal, onSubmit}: IFormEmployee) => {
+export const FormEmployee = ({id, title, handleCloseModal, onSubmit}: IFormEmployee) => {
     const employee = useAppSelector((state)=>getEmployeeByIdSelector(state, id));
+    const [error, setError] = useState<string | null>(null);
     const [formData, setFormData] = useState({
-        name: '',
-        phone: '',
-        birthday: '',
-        role: 'none',
-        isArchive: false,
+        name: employee?.name || '',
+        phone: employee?.phone || '',
+        birthday: employee?.birthday || '',
+        role: employee?.role || 'none',
+        isArchive: employee?.isArchive || false,
     });
-
-    useEffect(() => {
-        if (employee) {
-            setFormData({
-                name: employee.name,
-                phone: employee.phone,
-                birthday: employee.birthday,
-                role: employee.role,
-                isArchive: employee.isArchive,
-            });
-        }
-    }, [employee]);
 
     const handleChangeFormInputs = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.currentTarget;
@@ -52,16 +41,26 @@ export const FormEmployee = ({className, id, title, handleCloseModal, onSubmit}:
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        onSubmit({...formData, id: id || generateNumberId()});
+        const employee = {...formData, id: id || generateNumberId()}
+
+        const validationError = validateFormEmployee(employee);
+        if (validationError) {
+            setError(validationError);
+            return;
+        }
+
+        setError(null);
+
+        onSubmit(employee);
     }
 
     return (
         <Modal onClose={handleCloseModal} title={title}>
             <form className={style.form} onSubmit={handleSubmit}>
+                {error && <div className={style.error}>{error}</div>}
                 <label className={style.label}>
                     Имя сотрудника
-                    <input required
-                               type={'text'}
+                    <input     type={'text'}
                                placeholder={'Имя Фамилия'}
                                 name="name"
                                className={style.input_mask}

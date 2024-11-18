@@ -5,6 +5,10 @@
   width: 400px;
 }
 
+.error {
+  color: var(--error);
+}
+
 .label {
   display: flex;
   justify-content: space-between;

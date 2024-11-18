@@ -1,3 +1,5 @@
+@import "App/styles/mixins";
+
 .header {
   height: var(--header-height);
   display: flex;
@@ -29,3 +31,55 @@
   background-color: var(--gray);
   margin: 0;
 }
+
+.btn_menu {
+  display: none;
+}
+
+@include mobile-small {
+  .header {
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  .nav_container {
+    position: absolute;
+    background-color: var(--light-gray);
+    top: 67px;
+    right: 20px;
+    justify-content: center;
+    height: 0;
+    transition: height 0.5s ease;
+    overflow: hidden;
+    border-radius: 5px;
+    ul {
+      padding: 0 20px;
+      flex-direction: column;
+      display: none;
+    }
+  }
+
+  .active_nav {
+    display: flex;
+    height: 142px;
+    transition: height 0.5s ease;
+    ul {
+      display: flex;
+    }
+  }
+
+  .btn_menu {
+    padding: unset;
+    height: 35px;
+    width: 35px;
+    display: block;
+    margin-right: 20px;
+  }
+
+  .active {
+    display: block;
+  }
+
+}
+

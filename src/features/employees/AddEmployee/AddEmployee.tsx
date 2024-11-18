@@ -1,11 +1,12 @@
-import iconAddEmployee from '../../../assets/icons/add_employee.svg'
 import {useState} from "react";
+
+import iconAddEmployee from '../../../assets/icons/add_employee.svg'
 import {FormEmployee} from "../../../pages/Employees/FormEmployee/FormEmployee";
 import {IEmployee} from "../../../store/reducers/employees/types";
-
-import style from './AddEmployee.module.scss'
 import {useAppDispatch} from "../../../store/store";
 import {addEmployee} from "../../../store/reducers/employees/employeesReducer";
+
+import style from './AddEmployee.module.scss'
 
 export const AddEmployee = () => {
     const dispatch = useAppDispatch();

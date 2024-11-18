@@ -5,8 +5,8 @@ import {getEmployeeByIdSelector} from "../../../store/selectors/employeesSelecto
 import {ChangeEvent, FormEvent, useState} from "react";
 import {IEmployee} from "../../../store/reducers/employees/types";
 import {generateNumberId} from "../common/utils/generateNumberId";
-import style from './FormEmployee.module.scss'
 import {validateFormEmployee} from "../common/utils/validateFormEmployee";
+import style from './FormEmployee.module.scss'
 
 interface IFormEmployee {
     id?: number
@@ -55,7 +55,7 @@ export const FormEmployee = ({id, title, handleCloseModal, onSubmit}: IFormEmplo
     }
 
     return (
-        <Modal onClose={handleCloseModal} title={title}>
+        <Modal onClose={handleCloseModal} title={title} className={style.modal}>
             <form className={style.form} onSubmit={handleSubmit}>
                 {error && <div className={style.error}>{error}</div>}
                 <label className={style.label}>

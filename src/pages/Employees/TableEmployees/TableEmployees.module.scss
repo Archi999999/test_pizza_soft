@@ -1,3 +1,5 @@
+@import 'App/styles/mixins';
+
 .center {
   text-align: center;
 }
@@ -6,5 +8,21 @@
   cursor: pointer;
   &:hover {
     background-color: var(--light-gray);
+  }
+}
+
+@include mobile {
+  .table {
+    [data-column="isArchive"], [data-column="В Архиве"] {
+      display: none;
+    }
+  }
+}
+
+@include mobile-small {
+  .table {
+    [data-column="birthday"], [data-column="Дата Рождения"] {
+      display: none;
+    }
   }
 }

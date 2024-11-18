@@ -1,6 +1,15 @@
+@import "App/styles/mixins";
+
 .btn_add_employee {
   cursor: pointer;
   padding: 0;
   width: 25px;
   height: 25px;
+  margin-left: 20px;
+}
+
+@include mobile-small {
+  .btn_add_employee {
+    margin-bottom: 30px;
+  }
 }

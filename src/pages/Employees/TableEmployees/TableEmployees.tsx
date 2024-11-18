@@ -1,16 +1,16 @@
 import {headerCells} from "../common/utils/tableHeaderCells";
 import {Table} from "../../../widgets/Table/Table";
 import {TableListCell} from "../../../widgets/Table/TableListCell/TableListCell";
-
-import style from './TableEmployees.module.scss'
 import {useAppDispatch, useAppSelector} from "../../../store/store";
 import {employeeSelector, filterValuesSelector} from "../../../store/selectors/employeesSelector";
 import {useSearchParams} from "react-router-dom";
 import {useEffect} from "react";
 import {selectEmployeeId, sortEmployees} from "../../../store/reducers/employees/employeesReducer";
 
+import style from './TableEmployees.module.scss'
+
 export const TableEmployees = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const dispatch = useAppDispatch();
     const sortField = searchParams.get('sortField')
     const sortType = searchParams.get('sortType')
@@ -38,7 +38,7 @@ export const TableEmployees = () => {
 
 
     return (
-        <Table headerCells={headerCells}>
+        <Table headerCells={headerCells} className={style.table}>
             <tbody>
             {finalEmployees.map((employee) => (
                 <tr key={employee.id} className={style.row} onClick={()=>handlerEditEmployee(employee.id)}>

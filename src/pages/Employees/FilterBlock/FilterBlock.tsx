@@ -26,7 +26,7 @@ export const FilterBlock = () => {
 
     return (
         <div className={style.filter_block}>
-            <select id="my-select" value={role} onChange={handleChangeOption}>
+            <select id="filter-select" value={role} onChange={handleChangeOption}>
                 <option value="none">Выберите должность</option>
                 <option value="cook">Повар</option>
                 <option value="waiter">Официант</option>

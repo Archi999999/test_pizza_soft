@@ -2,16 +2,22 @@ import {TableEmployees} from "./TableEmployees/TableEmployees";
 import {FilterBlock} from "./FilterBlock/FilterBlock";
 import {useAppSelector} from "../../store/store";
 import {selectEmployeeIdSelector} from "../../store/selectors/employeesSelector";
-import {FormEmployee} from "./FormEmployee/FormEmloyee";
+import {AddEmployee} from "../../features/employees/AddEmployee/AddEmployee";
+import {EditEmployee} from "../../features/employees/EditEmployee/EditEmployee";
+
+import style from './Employees.module.scss'
+
 
 export const Employees = () => {
     const employeeId = useAppSelector(selectEmployeeIdSelector)
-    console.log(employeeId)
     return (
         <section>
-            <FilterBlock/>
+            <div className={style.top_block}>
+                <FilterBlock/>
+                <AddEmployee/>
+            </div>
             <TableEmployees/>
-            {employeeId && <FormEmployee/>}
+            {employeeId && <EditEmployee id={employeeId}/>}
         </section>
     )
 }

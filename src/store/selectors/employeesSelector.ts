@@ -7,3 +7,7 @@ export const employeeSelector = (state: RootState): IEmployee[] => state.employe
 export const filterValuesSelector = (state: RootState): IFilterValues => state.employees.filterValues
 
 export const selectEmployeeIdSelector = (state: RootState): number | null => state.employees.selectEmployeeId
+
+export const getEmployeeByIdSelector = (state: RootState, id: number | undefined): IEmployee | undefined => {
+    return  state.employees.employees.find((employee: IEmployee) => employee.id === id)
+}

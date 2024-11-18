@@ -1,0 +1,19 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 400px;
+}
+
+.label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input_mask {
+  text-align: center;
+}
+
+.select {
+  width: 202px;
+}

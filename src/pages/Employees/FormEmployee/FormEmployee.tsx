@@ -99,7 +99,7 @@ export const FormEmployee = ({id, title, handleCloseModal, onSubmit}: IFormEmplo
                     </select>
                 </label>
 
-                <label className={'no-select'}>
+                <label className={`no-select ${style.checkbox}`}>
                     в архиве
                     <input type={'checkbox'}
                            checked={formData.isArchive}

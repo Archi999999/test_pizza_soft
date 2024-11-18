@@ -16,6 +16,7 @@
 .label {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .input_mask {
@@ -24,4 +25,9 @@
 
 .select {
   width: 202px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
 }
